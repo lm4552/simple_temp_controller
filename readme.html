@@ -1,0 +1,39 @@
+<h1 id="simple-temperature-controller">Simple Temperature Controller</h1>
+<p>This is a simple project to control some outputs by the value of a temperature sensor with MircoPython on a Raspberry Pi Pico. In normal operation the actual temperature of the temperature sensor is shown on the two 7-segment displays. Additionally, the current state (e.g. currently cooling or not) is shown using three LEDs. The threshold value for the desired temperature can be set with two push buttons.</p>
+<p>The python code is used for controlling a refrigerator as well as a simple aquarium cooler and you can find the code for both on the GitHub repository.</p>
+<p><a href="https://github.com/lm4552/simple_temp_controller">See project on GitHub</a></p>
+<h2 id="refrigerator-controller">Refrigerator Controller</h2>
+<p>I used this project to control an old refrigerator which did not properly cool anymore. However, the refigerator had a manual button for activating the cooling which still worked. So I simply interfaced this button and put a temperature sensor inside the fridge. For interfacing the button I had to use some MOSFET modules because I did not have other components available.</p>
+<h3 id="schematic">Schematic</h3>
+<p><img alt="Schematic" src="./refrigerator_control.svg" width="900px"/></p>
+<h3 id="images">Images</h3>
+<div>
+<div class="img_frame">
+<table>
+<thead>
+<tr class="header">
+<th><img src="./img1.jpg" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Old fridge wired to the controller on top</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="img_frame">
+<table>
+<thead>
+<tr class="header">
+<th><img src="./img2.jpg" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Open case of the controller with both stripboards</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="aquarium-cooler">Aquarium Cooler</h2>
