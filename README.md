@@ -28,5 +28,6 @@ I used this project to control an old refrigerator which did not properly cool a
 |---|
 |Open case of the controller with both stripboards |
 </div>
+</div>
 
 ## Aquarium Cooler
