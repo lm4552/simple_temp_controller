@@ -3,6 +3,7 @@ import onewire
 import ds18x20
 import time
 
+
 charmap = {
     '0': 0b00111111,
     '1': 0b00000110,
@@ -32,12 +33,24 @@ pins_A = {'a': 9, 'b': 8, 'c': 12, 'd': 11, 'e': 10, 'f': 7, 'g': 6, 'h': 13}
 pins_B = {'a': 20, 'b': 21, 'c': 27, 'd': 26,
           'e': 22, 'f': 19, 'g': 18, 'h': 28}
 
+pinout = {
+    'temperature_sensor' : 17,
+    'blue_led' : 14,
+    'red_led' : 15,
+    'yellow_led' : 16,
+    'cooler_output' : 3,
+    'fan_output' : 5,
+    'plus_switch' : 0,
+    'minus_switch' : 1
+}
+
 display_B, display_A = {}, {}
 cooling_state, fan_state = False, False
 roms = []
-threshold_temp = 7
+threshold_temp = 28
 seconds_to_retrigger = 60*10
 last_retrigger = time.time()
+trigger_twice = False
 
 
 def main():
@@ -96,8 +109,9 @@ def handle_temp_control(temp):
             cooling.on()
             fan.on()
             time.sleep_ms(500)
-            cooling.off()
-            fan.off()
+            if trigger_twice:
+                cooling.off()
+                fan.off()
             cooling_state = True
             fan_state = True
 
@@ -106,8 +120,9 @@ def handle_temp_control(temp):
         led_yellow.on()
     elif temp < threshold_temp:
         if cooling_state == True and fan_state == True:
-            cooling.on()
-            fan.on()
+            if trigger_twice:
+                cooling.on()
+                fan.on()
             time.sleep_ms(500)
             cooling.off()
             fan.off()
@@ -124,8 +139,9 @@ def handle_temp_control(temp):
             cooling.on()
             fan.on()
             time.sleep_ms(500)
-            cooling.off()
-            fan.off()
+            if trigger_twice:
+                cooling.off()
+                fan.off()
             cooling_state = True
             fan_state = True
         led_blue.off()
@@ -137,25 +153,52 @@ def handle_retrigger_control():
     global last_retrigger, seconds_to_retrigger, led_blue, led_red, led_yellow, cooling_state, fan_state, cooling, fan
     print(time.time())
     if (time.time() > last_retrigger + seconds_to_retrigger):
-        # just activate the switches two times (state restored)
-        led_blue.off()
-        led_red.off()
-        led_yellow.off()
-        cooling.on()
-        fan.on()
-        time.sleep_ms(250)
-        cooling.off()
-        fan.off()
-        time.sleep_ms(250)
-        cooling.on()
-        fan.on()
-        time.sleep_ms(250)
-        cooling.off()
-        fan.off()
-        led_blue.on()
-        led_red.on()
-        led_yellow.on()
-        time.sleep_ms(250)
+        if trigger_twice:
+            # just activate the switches two times (state restored)
+            led_blue.off()
+            led_red.off()
+            led_yellow.off()
+            cooling.on()
+            fan.on()
+            time.sleep_ms(250)
+            cooling.off()
+            fan.off()
+            time.sleep_ms(250)
+            cooling.on()
+            fan.on()
+            time.sleep_ms(250)
+            cooling.off()
+            fan.off()
+            led_blue.on()
+            led_red.on()
+            led_yellow.on()
+            time.sleep_ms(250)
+        else:
+            # activate output according to current state
+            led_blue.off()
+            led_red.off()
+            led_yellow.off()
+            if cooling_state == True and fan_state == True:
+                cooling.off()
+                fan.off()
+            else:
+                cooling.on()
+                fan.on()
+            time.sleep_ms(250)
+            if cooling_state == True and fan_state == True:
+                cooling.on()
+                fan.on()
+            else:
+                cooling.off()
+                fan.off()
+            time.sleep_ms(250)
+
+            led_blue.on()
+            led_red.on()
+            led_yellow.on()
+            time.sleep_ms(250)
+
+
         print('retriggered outputs')
         last_retrigger = time.time()
 
@@ -193,28 +236,28 @@ def init_displays():
 
 
 def init_temp_sensor():
-    global ds_sensor
-    ds_pin = machine.Pin(14)
+    global ds_sensor, pinout
+    ds_pin = machine.Pin(pinout['temperature_sensor'])
     ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
 
 
 def init_leds():
-    global led_blue, led_yellow, led_red
-    led_blue = machine.Pin(3, machine.Pin.OUT)
-    led_yellow = machine.Pin(4, machine.Pin.OUT)
-    led_red = machine.Pin(5, machine.Pin.OUT)
+    global led_blue, led_yellow, led_red,pinout
+    led_blue = machine.Pin(pinout['blue_led'], machine.Pin.OUT)
+    led_yellow = machine.Pin(pinout['yellow_led'], machine.Pin.OUT)
+    led_red = machine.Pin(pinout['red_led'], machine.Pin.OUT)
 
 
 def init_control():
-    global cooling, fan
-    cooling = machine.Pin(0, machine.Pin.OUT)
-    fan = machine.Pin(1, machine.Pin.OUT)
+    global cooling, fan, pinout 
+    cooling = machine.Pin(pinout['cooler_output'], machine.Pin.OUT)
+    fan = machine.Pin(pinout['fan_output'], machine.Pin.OUT)
 
 
 def init_switches():
     global switch_plus, switch_minus
-    switch_plus = machine.Pin(16, machine.Pin.IN, machine.Pin.PULL_UP)
-    switch_minus = machine.Pin(17, machine.Pin.IN, machine.Pin.PULL_UP)
+    switch_plus = machine.Pin(pinout['plus_switch'], machine.Pin.IN, machine.Pin.PULL_UP)
+    switch_minus = machine.Pin(pinout['minus_switch'], machine.Pin.IN, machine.Pin.PULL_UP)
 
 
 def renderChar(c, disp, dp=False):

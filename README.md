@@ -31,3 +31,35 @@ I used this project to control an old refrigerator which did not properly cool a
 </div>
 
 ## Aquarium Cooler
+
+This is basically a simple fan controller that works by temperature sensor readings. 
+Since the sensor can operate under water it is possible to measure the actual water temperature and turn on a fan if necessary.
+In fish tanks high temperatures lead to low amounts of dissolved oxygen in the water. 
+By lowering the temperature and increasing the gas exchange the problem can be solved.
+However, if the fan is turned on the water will get cooler 
+The water is cooled by turning on the fan because of the evaporation effect from the increased airflow.
+
+For the hardware I used three stripboards and stacked them:
+- Top: MOS module, buttons, displays and the resistors for the displays
+- Middle: LDO circuit and wiring
+- Bottom: Raspberry Pi Pico, sensor and USB connector
+
+### Schematic
+<img alt="Schematic" src="./aquarium_cooler.svg" width="900px"/> 
+
+### Images
+
+<div>
+<div class="img_frame">
+
+|![](./img3.jpg)|
+|---|
+|Hardware inside a small 65x45x25 mm case|
+</div>
+<div class="img_frame">
+
+|![](./img4.jpg)|
+|---|
+|Stacked stripboards |
+</div>
+</div>
