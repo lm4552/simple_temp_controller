@@ -6,6 +6,13 @@ The python code is used for controlling a refrigerator as well as a simple aquar
 
 [See project on GitHub](https://github.com/lm4552/simple_temp_controller)
 
+|Contents|
+|---|
+|Refrigerator Controller|
+|Aquarium Cooler|
+
+---
+
 ## Refrigerator Controller
 
 I used this project to control an old refrigerator which did not properly cool anymore. However, the refigerator had a manual button for activating the cooling which still worked. So I simply interfaced this button and put a temperature sensor inside the fridge. For interfacing the button I had to use some MOSFET modules because I did not have other components available.  
@@ -36,10 +43,10 @@ This is basically a simple fan controller that works by temperature sensor readi
 Since the sensor can operate under water it is possible to measure the actual water temperature and turn on a fan if necessary.
 In fish tanks high temperatures lead to low amounts of dissolved oxygen in the water. 
 By lowering the temperature and increasing the gas exchange the problem can be solved.
-However, if the fan is turned on the water will get cooler 
 The water is cooled by turning on the fan because of the evaporation effect from the increased airflow.
 
 For the hardware I used three stripboards and stacked them:
+
 - Top: MOS module, buttons, displays and the resistors for the displays
 - Middle: LDO circuit and wiring
 - Bottom: Raspberry Pi Pico, sensor and USB connector

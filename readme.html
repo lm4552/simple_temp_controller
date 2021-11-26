@@ -2,6 +2,22 @@
 <p>This is a simple project to control some outputs by the value of a temperature sensor with MircoPython on a Raspberry Pi Pico. In normal operation the actual temperature of the temperature sensor is shown on the two 7-segment displays. Additionally, the current state (e.g. currently cooling or not) is shown using three LEDs. The threshold value for the desired temperature can be set with two push buttons.</p>
 <p>The python code is used for controlling a refrigerator as well as a simple aquarium cooler and you can find the code for both on the GitHub repository.</p>
 <p><a href="https://github.com/lm4552/simple_temp_controller">See project on GitHub</a></p>
+<table>
+<thead>
+<tr class="header">
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Refrigerator Controller</td>
+</tr>
+<tr class="even">
+<td>Aquarium Cooler</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="refrigerator-controller">Refrigerator Controller</h2>
 <p>I used this project to control an old refrigerator which did not properly cool anymore. However, the refigerator had a manual button for activating the cooling which still worked. So I simply interfaced this button and put a temperature sensor inside the fridge. For interfacing the button I had to use some MOSFET modules because I did not have other components available.</p>
 <h3 id="schematic">Schematic</h3>
@@ -38,8 +54,13 @@
 </div>
 </div>
 <h2 id="aquarium-cooler">Aquarium Cooler</h2>
-<p>This is basically a simple fan controller that works by temperature sensor readings. Since the sensor can operate under water it is possible to measure the actual water temperature and turn on a fan if necessary. In fish tanks high temperatures lead to low amounts of dissolved oxygen in the water. By lowering the temperature and increasing the gas exchange the problem can be solved. However, if the fan is turned on the water will get cooler The water is cooled by turning on the fan because of the evaporation effect from the increased airflow.</p>
-<p>For the hardware I used three stripboards and stacked them: - Top: MOS module, buttons, displays and the resistors for the displays - Middle: LDO circuit and wiring - Bottom: Raspberry Pi Pico, sensor and USB connector</p>
+<p>This is basically a simple fan controller that works by temperature sensor readings. Since the sensor can operate under water it is possible to measure the actual water temperature and turn on a fan if necessary. In fish tanks high temperatures lead to low amounts of dissolved oxygen in the water. By lowering the temperature and increasing the gas exchange the problem can be solved. The water is cooled by turning on the fan because of the evaporation effect from the increased airflow.</p>
+<p>For the hardware I used three stripboards and stacked them:</p>
+<ul>
+<li>Top: MOS module, buttons, displays and the resistors for the displays</li>
+<li>Middle: LDO circuit and wiring</li>
+<li>Bottom: Raspberry Pi Pico, sensor and USB connector</li>
+</ul>
 <h3 id="schematic-1">Schematic</h3>
 <p><img alt="Schematic" src="./aquarium_cooler.svg" width="900px"/></p>
 <h3 id="images-1">Images</h3>
