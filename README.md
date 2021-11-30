@@ -37,6 +37,8 @@ I used this project to control an old refrigerator which did not properly cool a
 </div>
 </div>
 
+---
+
 ## Aquarium Cooler
 
 This is basically a simple fan controller that works by temperature sensor readings. 
