@@ -25,13 +25,13 @@ I used this project to control an old refrigerator which did not properly cool a
 <div>
 <div class="img_frame">
 
-|![](./img1.jpg)|
+|![](./img/img1.jpg)|
 |---|
 |Old fridge wired to the controller on top|
 </div>
 <div class="img_frame">
 
-|![](./img2.jpg)|
+|![](./img/img2.jpg)|
 |---|
 |Open case of the controller with both stripboards |
 </div>
@@ -63,25 +63,25 @@ For the hardware I used three stripboards and stacked them:
 <div>
 <div class="img_frame">
 
-|![](./img3.jpg)|
+|![](./img/img3.jpg)|
 |---|
 |Hardware inside a small 65x45x25 mm case|
 </div>
 <div class="img_frame">
 
-|![](./img4.jpg)|
+|![](./img/img4.jpg)|
 |---|
 |Stacked stripboards |
 </div>
 <div class="img_frame">
 
-|![](./img5.jpg)|
+|![](./img/img5.jpg)|
 |---|
 |Power supply, temperature sensor, the circuit and a fan mounted on a gooseneck|
 </div>
 <div class="img_frame">
 
-|![](./img6.jpg)|
+|![](./img/img6.jpg)|
 |---|
 |Setup on an aquarium |
 </div>
