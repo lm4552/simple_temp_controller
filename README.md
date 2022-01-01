@@ -37,6 +37,8 @@ I used this project to control an old refrigerator which did not properly cool a
 </div>
 </div>
 
+
+
 ---
 
 ## Aquarium Cooler
@@ -70,5 +72,17 @@ For the hardware I used three stripboards and stacked them:
 |![](./img4.jpg)|
 |---|
 |Stacked stripboards |
+</div>
+<div class="img_frame">
+
+|![](./img5.jpg)|
+|---|
+|Power supply, temperature sensor, the circuit and a fan mounted on a gooseneck|
+</div>
+<div class="img_frame">
+
+|![](./img6.jpg)|
+|---|
+|Setup on an aquarium |
 </div>
 </div>
